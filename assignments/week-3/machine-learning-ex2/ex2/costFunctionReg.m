@@ -19,8 +19,6 @@ grad = zeros(size(theta));
 
 z = X  *  theta;
 
-% n = size(theta)
-
 J = (1/m) * sum(-y .* log(sigmoid(z)) - (1 - y) .* log(1 - sigmoid(z))) + lambda/(2*m) * sum(theta(2:end, :) .^ 2);
 
 % for index 1, no regularization is applied
