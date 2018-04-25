@@ -36,6 +36,5 @@ function [theta1, theta2] = xor_nn(X, alpha, iterations)
 	  if (mod(j, 2000) == 0)
 		disp('Iterations Executed : '), disp(j);
 	  end
-	  
 	end
 end
