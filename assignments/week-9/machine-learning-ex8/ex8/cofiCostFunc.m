@@ -39,9 +39,22 @@ Theta_grad = zeros(size(Theta));
 %        Theta_grad - num_users x num_features matrix, containing the 
 %                     partial derivatives w.r.t. to each element of Theta
 %
-J = (1/2) * 
+% calculating cost function.
+
+error = (X * Theta' - Y);
+J = (1/2) * sum((error .^ 2) (R == 1));
+
+J = J + (1/2) * lambda * sum(sum(Theta .^ 2));  % regularized term of Theta.
+J = J + (1/2) * lambda * sum(sum(X .^ 2));      % regularized term of X.
+
+X_grad = (error .* R) * Theta;                 % unregularized vectorized implementation
+Theta_grad = ((error .* R)' * X);              % unregularized vectorized implementation
+
+X_grad = X_grad + (lambda * X);              % regularized
+Theta_grad = Theta_grad + (lambda * Theta);  % regularized
 
 % =============================================================
+
 grad = [X_grad(:); Theta_grad(:)];
 
 end
